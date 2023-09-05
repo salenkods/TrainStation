@@ -10,7 +10,24 @@
         Width="1280"
         Loaded="OnLoaded">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListView
+            Grid.Column="0"
+            VerticalAlignment="Bottom"
+            ItemsSource="{Binding ParkItems}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedPark}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <controls:TrainStationRenderer
+            Grid.Column="1"
             Height="400"
             Width="1000"
             VerticalAlignment="Bottom"

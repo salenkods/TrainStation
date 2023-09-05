@@ -4,7 +4,11 @@ namespace GuiApp.ViewModels.Controllers;
 
 public interface ITrendStationRenderController
 {
-    void Draw(TrainStation trainStation);
+    void DrawStation(TrainStation trainStation);
 
-    event EventHandler<TrainStation> DrawRequested;
+    void HighlightPark(Park park);
+
+    event EventHandler<TrainStation> DrawStationRequested;
+
+    event EventHandler<Park> HighlightParkRequested;
 }

@@ -4,9 +4,15 @@ namespace GuiApp.ViewModels.Controllers;
 
 public class TrendStationRenderController : ITrendStationRenderController
 {
-    public event EventHandler<TrainStation>? DrawRequested;
+    public event EventHandler<TrainStation>? DrawStationRequested;
 
-    public void Draw(TrainStation trainStation) {
-        DrawRequested?.Invoke(null, trainStation);
+    public event EventHandler<Park>? HighlightParkRequested;
+
+    public void DrawStation(TrainStation trainStation) {
+        DrawStationRequested?.Invoke(null, trainStation);
+    }
+
+    public void HighlightPark(Park park) {
+        HighlightParkRequested?.Invoke(null, park);
     }
 }

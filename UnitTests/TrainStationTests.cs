@@ -7,7 +7,7 @@ public class TrainStationTests
     [Fact]
     public void TrainStatinIsCreated_BoundaryCalculatedCorrectly() {
         // Arrange
-        var lines = new List<Line>() {
+        var points = new List<(Point PointA, Point PointB)>() {
             new (new (8, 1), new (12, 1)),
             new (new (7, 2), new (8, 1)),
             new (new (12, 1), new (13, 2)),
@@ -21,7 +21,11 @@ public class TrainStationTests
             new (new (9, 3), new (14, 3))
         };
 
-        var trainStation = new TrainStation(lines);
+        var lines = points
+            .Select((p, i) => new Line(i, points[i].PointA, points[i].PointB))
+            .ToList();
+
+        var trainStation = new TrainStation(lines, new List<Park>());
 
         // Act
         var (minX, minY, maxX, maxY) = trainStation.GetBoundary();
