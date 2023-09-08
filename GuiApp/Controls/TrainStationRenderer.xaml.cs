@@ -48,12 +48,14 @@ public partial class TrainStationRenderer : UserControl
     private void DrawLines(List<Models.Line> lines, Canvas canvas, Brush color, double strokeThickness = 1) {
         canvas.Children.Clear();
 
+        // Take into account that canvas coordinate system vertical axis is directed from top to bottom
+
         foreach (var trainLine in lines) {
             var line = new Line() {
                 X1 = (trainLine.PointA.X - offsetX) * scaleFactor,
-                Y1 = (trainLine.PointA.Y - offsetY) * scaleFactor,
+                Y1 = (Math.Abs(trainLine.PointA.Y - offsetY)) * scaleFactor,
                 X2 = (trainLine.PointB.X - offsetX) * scaleFactor,
-                Y2 = (trainLine.PointB.Y - offsetY) * scaleFactor,
+                Y2 = (Math.Abs(trainLine.PointB.Y - offsetY)) * scaleFactor,
                 Stroke = color,
                 StrokeThickness = strokeThickness
             };
@@ -63,12 +65,13 @@ public partial class TrainStationRenderer : UserControl
     }
 
     private void CalculateDrawScaleFactorAndOffsets(IList<Models.Line> lines) {
+        // Use offsets to shift points closer to coordinate system zero
         var (minX, minY, maxX, maxY) = BoundaryHelper.GetBoundary(lines);
         var scaleX = rootGrid.ActualWidth / (maxX - minX);
         var scaleY = rootGrid.ActualHeight / (maxY - minY);
 
         scaleFactor = Math.Min(scaleX, scaleY);
         offsetX = minX;
-        offsetY = minY;
+        offsetY = maxY;
     }
 }
