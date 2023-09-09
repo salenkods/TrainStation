@@ -1,6 +1,5 @@
 using DataProviders;
 using GuiApp.ViewModels.Controllers;
-using Models;
 using System.Collections.ObjectModel;
 
 namespace GuiApp.ViewModels;
@@ -17,20 +16,20 @@ public class MainViewModel : BaseViewModel
         this.trainStationDataProvider = trainStationDataProvider;
     }
 
-    public ObservableCollection<Park>? ParkItems { get; private set; }
+    public ObservableCollection<ParkViewModel>? ParkItems { get; private set; }
 
-    private Park? selectedPark;
-    public Park? SelectedPark {
+    private ParkViewModel? selectedPark;
+    public ParkViewModel? SelectedPark {
         get => selectedPark;
         set {
             SetProperty(ref selectedPark, value);
-            trendStationRenderController.HighlightPark(value);
+            trendStationRenderController.HighlightPark(value.Park);
         }
     }
 
     public void Activate() {
         var trainStation = trainStationDataProvider.GetTrainStation();
         trendStationRenderController.DrawStation(trainStation);
-        ParkItems = new ObservableCollection<Park>(trainStation.Parks);
+        ParkItems = new ObservableCollection<ParkViewModel>(trainStation.Parks.Select(x => new ParkViewModel(x)));
     }
 }

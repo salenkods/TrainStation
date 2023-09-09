@@ -16,13 +16,24 @@
         </Grid.ColumnDefinitions>
         <ListView
             Grid.Column="0"
-            VerticalAlignment="Bottom"
+            VerticalAlignment="Top"
             ItemsSource="{Binding ParkItems}"
             SelectionMode="Single"
             SelectedItem="{Binding SelectedPark}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock
+                            Text="{Binding Name}"
+                            FontSize="20" />
+                        <ItemsControl ItemsSource="{Binding Vertices}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
@@ -30,8 +41,7 @@
             Grid.Column="1"
             Height="400"
             Width="1000"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
             Margin="10">
         </controls:TrainStationRenderer>
     </Grid>
