@@ -30,7 +30,7 @@ public class TrainStationDataProvider : ITrainStationDataProvider
             new (new (16, 5), new (17, 4)),
             new (new (0, 4), new (1, 4)),
             new (new (1, 4), new (3, 4)),
-            new (new (3, 4), new (16, 4)),
+            new (new (3, 4), new (6, 4)),
             new (new (16, 4), new (17, 4)),
             new (new (17, 4), new (18, 4)),
             new (new (3, 4), new (4, 3)),
@@ -46,7 +46,8 @@ public class TrainStationDataProvider : ITrainStationDataProvider
             new (new (12, 2), new (16, 2)),
             new (new (2, 2), new (3, 1)),
             new (new (15, 1), new (16, 2)),
-            new (new (3, 1), new (15, 1))
+            new (new (3, 1), new (15, 1)),
+            new (new (6, 4), new (16, 4)),
         };
 
         var lines = points
@@ -87,10 +88,13 @@ public class TrainStationDataProvider : ITrainStationDataProvider
         path8.TryAddLine(lines[37]);
         path8.TryAddLine(lines[39]);
 
+        var path9 = new Path();
+        path9.TryAddLine(lines[40]);
+
         var parks = new List<Park>();
         parks.Add(new Park("Park 1", new List<Path> { path1, path3, path5}));
         parks.Add(new Park("Park 2", new List<Path> { path2, path3, path8 }));
-        parks.Add(new Park("Park 3", new List<Path> { path1, path2, path6, path4 }));
+        parks.Add(new Park("Park 3", new List<Path> { path1, path2, path9, path6, path4 }));
         parks.Add(new Park("Park 4", new List<Path> { path2, path3, path4, path7, path8 }));
         parks.Add(new Park("Park 5", new List<Path> { path3, path5 }));
 

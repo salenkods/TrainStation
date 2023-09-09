@@ -1,3 +1,5 @@
+using Models.Helpers;
+
 namespace Models;
 
 public class Park
@@ -10,4 +12,6 @@ public class Park
     public string Name { get; }
 
     public List<Path> Paths { get; }
+
+    public List<Point> GetVertices() => VertexHelper.FindVertices(Paths.SelectMany(x => x.GetPoints()).ToList());
 }

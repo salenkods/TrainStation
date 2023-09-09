@@ -13,5 +13,5 @@ public class TrainStation
 
     public List<Park> Parks { get; }
 
-    public (int minX, int minY, int maxX, int maxY) GetBoundary()  => BoundaryHelper.GetBoundary(Lines);
+    public (double minX, double minY, double maxX, double maxY) GetBoundary()  => BoundaryHelper.GetBoundary(Lines);
 }

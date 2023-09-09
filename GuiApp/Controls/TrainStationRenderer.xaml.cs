@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
 using Line = System.Windows.Shapes.Line;
 
 namespace GuiApp.Controls;
@@ -18,8 +19,8 @@ public partial class TrainStationRenderer : UserControl
 
     private TrainStation? trainStation;
     private double scaleFactor;
-    private int offsetX;
-    private int offsetY;
+    private double offsetX;
+    private double offsetY;
 
     public TrainStationRenderer() {
         trendStationRenderController = ServiceLocator.GetInstance<ITrendStationRenderController>();
@@ -32,6 +33,7 @@ public partial class TrainStationRenderer : UserControl
     private void OnDrawStationRequested(object? sender, TrainStation e) {
         trainStation = e;
         canvasPark.Children.Clear();
+        canvasStation.Children.Clear();
         CalculateDrawScaleFactorAndOffsets(trainStation.Lines);
         DrawLines(trainStation.Lines, canvasStation, Brushes.Black);
     }
@@ -42,26 +44,43 @@ public partial class TrainStationRenderer : UserControl
             return;
         }
 
+        canvasPark.Children.Clear();
         DrawLines(e.Paths.SelectMany(x => x.Lines).ToList(), canvasPark, Brushes.Blue, 2);
+        HighlightPark(e, canvasPark);
     }
 
     private void DrawLines(List<Models.Line> lines, Canvas canvas, Brush color, double strokeThickness = 1) {
-        canvas.Children.Clear();
-
         // Take into account that canvas coordinate system vertical axis is directed from top to bottom
 
         foreach (var trainLine in lines) {
             var line = new Line() {
-                X1 = (trainLine.PointA.X - offsetX) * scaleFactor,
-                Y1 = (Math.Abs(trainLine.PointA.Y - offsetY)) * scaleFactor,
-                X2 = (trainLine.PointB.X - offsetX) * scaleFactor,
-                Y2 = (Math.Abs(trainLine.PointB.Y - offsetY)) * scaleFactor,
+                X1 = ToCanvasX(trainLine.PointA.X),
+                Y1 = ToCanvasY(trainLine.PointA.Y),
+                X2 = ToCanvasX(trainLine.PointB.X),
+                Y2 = ToCanvasY(trainLine.PointB.Y),
                 Stroke = color,
                 StrokeThickness = strokeThickness
             };
 
             canvas.Children.Add(line);
         }
+    }
+
+    private void HighlightPark(Park park, Canvas canvas) {
+        var pointCollection = new PointCollection();
+        foreach (var vertex in park.GetVertices()) {
+            pointCollection.Add(new System.Windows.Point(ToCanvasX(vertex.X), ToCanvasY(vertex.Y)));
+        }
+
+        var polygon = new Polygon {
+            Points = pointCollection,
+            Stroke = Brushes.LightGreen,
+            Fill = Brushes.LightGreen,
+            StrokeThickness = 1,
+            Opacity = 0.25
+        };
+
+        canvas.Children.Add(polygon);
     }
 
     private void CalculateDrawScaleFactorAndOffsets(IList<Models.Line> lines) {
@@ -73,5 +92,13 @@ public partial class TrainStationRenderer : UserControl
         scaleFactor = Math.Min(scaleX, scaleY);
         offsetX = minX;
         offsetY = maxY;
+    }
+
+    private double ToCanvasX(double x) {
+        return (x - offsetX) * scaleFactor;
+    }
+
+    private double ToCanvasY(double y) {
+        return Math.Abs((y - offsetY)) * scaleFactor;
     }
 }

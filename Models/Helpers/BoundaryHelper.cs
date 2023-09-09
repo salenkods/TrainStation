@@ -2,12 +2,12 @@ namespace Models.Helpers;
 
 public static class BoundaryHelper
 {
-    public static (int minX, int minY, int maxX, int maxY) GetBoundary(IList<Line> lines) {
+    public static (double minX, double minY, double maxX, double maxY) GetBoundary(IList<Line> lines) {
 
-        int minX = int.MaxValue;
-        int minY = int.MaxValue;
-        int maxX = 0;
-        int maxY = 0;
+        var minX = double.MaxValue;
+        var minY = double.MaxValue;
+        var maxX = 0d;
+        var maxY = 0d;
 
         foreach (var line in lines) {
             minX = Math.Min(minX, Math.Min(line.PointA.X, line.PointB.X));

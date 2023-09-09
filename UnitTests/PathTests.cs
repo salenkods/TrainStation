@@ -45,4 +45,37 @@ public class PathTests
         Assert.False(result);
         Assert.True(path.Lines.Count == 1);
     }
+
+    [Fact]
+    public void PathIsNotEmpty_GetPoints_ResultIsCorrect() {
+        // Arrange
+        var path = new Path();
+        path.TryAddLine(new Line(1, new Point(1, 1), new Point(2, 1)));
+        path.TryAddLine(new Line(1, new Point(2, 1), new Point(3, 1)));
+        path.TryAddLine(new Line(1, new Point(3, 1), new Point(4, 1)));
+        path.TryAddLine(new Line(1, new Point(4, 1), new Point(5, 1)));
+
+        // Act
+        var points = path.GetPoints();
+
+        // Assert
+        Assert.Equal(5, points.Count);
+        Assert.Contains(new Point(1, 1), points);
+        Assert.Contains(new Point(2, 1), points);
+        Assert.Contains(new Point(3, 1), points);
+        Assert.Contains(new Point(4, 1), points);
+        Assert.Contains(new Point(5, 1), points);
+    }
+
+    [Fact]
+    public void PathEmpty_GetPoints_ResultIsEmpty() {
+        // Arrange
+        var path = new Path();
+
+        // Act
+        var points = path.GetPoints();
+
+        // Assert
+        Assert.Empty(points);
+    }
 }

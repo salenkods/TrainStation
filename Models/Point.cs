@@ -2,14 +2,14 @@ namespace Models;
 
 public class Point
 {
-    public Point(int x, int y) {
+    public Point(double x, double y) {
         X = x;
         Y = y;
     }
 
-    public int X { get; }
+    public double X { get; }
 
-    public int Y { get; }
+    public double Y { get; }
 
     public override bool Equals(object? obj) {
         if ((obj == null) || !GetType().Equals(obj.GetType())) {
@@ -26,4 +26,6 @@ public class Point
     public static bool operator !=(Point left, Point right) => !Equals(left, right);
 
     public override int GetHashCode() => base.GetHashCode();
+
+    public override string ToString() => $"X: {X}, Y: {Y}";
 }

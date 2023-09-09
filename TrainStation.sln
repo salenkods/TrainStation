@@ -5,13 +5,15 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{5E428185-4898-46F0-BC2B-487B93563F14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviders", "DataProviders\DataProviders.csproj", "{1924FB19-B4A5-44EA-BCBB-989AFB3B2F62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataProviders", "DataProviders\DataProviders.csproj", "{1924FB19-B4A5-44EA-BCBB-989AFB3B2F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiApp", "GuiApp\GuiApp.csproj", "{057F2AEB-A678-49FA-9622-35BF95309D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiApp", "GuiApp\GuiApp.csproj", "{057F2AEB-A678-49FA-9622-35BF95309D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiApp.ViewModels", "GuiApp.ViewModels\GuiApp.ViewModels.csproj", "{28030061-C1F0-49C4-83AE-A7688957CFD5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiApp.ViewModels", "GuiApp.ViewModels\GuiApp.ViewModels.csproj", "{28030061-C1F0-49C4-83AE-A7688957CFD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{461680E2-B5E4-4442-8AB2-47AEE8A8B3CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{461680E2-B5E4-4442-8AB2-47AEE8A8B3CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{461680E2-B5E4-4442-8AB2-47AEE8A8B3CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{461680E2-B5E4-4442-8AB2-47AEE8A8B3CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{461680E2-B5E4-4442-8AB2-47AEE8A8B3CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
