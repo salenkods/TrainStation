@@ -25,7 +25,7 @@ public class Point
 
     public static bool operator !=(Point left, Point right) => !Equals(left, right);
 
-    public override int GetHashCode() => base.GetHashCode();
+    public override int GetHashCode() => HashCode.Combine(X, Y);
 
     public override string ToString() => $"X: {X}, Y: {Y}";
 }

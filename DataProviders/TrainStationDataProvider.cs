@@ -51,7 +51,7 @@ public class TrainStationDataProvider : ITrainStationDataProvider
         };
 
         var lines = points
-            .Select((p, i) => new Line(i, points[i].PointA, points[i].PointB))
+            .Select((p, i) => new Line(i, $"{i}", points[i].PointA, points[i].PointB))
             .ToList();
 
         var path1 = new Path();

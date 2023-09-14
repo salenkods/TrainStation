@@ -11,7 +11,7 @@ public class PathTests
         var path = new Path();
 
         // Act
-        var result = path.TryAddLine(new Line(1, new Point(1, 1), new Point(2, 1)));
+        var result = path.TryAddLine(new Line(1,"1", new Point(1, 1), new Point(2, 1)));
 
         // Assert
         Assert.True(result);
@@ -22,10 +22,10 @@ public class PathTests
     public void PathIsNotEmpty_AddValidLine_LineIsAdded() {
         // Arrange
         var path = new Path();
-        path.TryAddLine(new Line(1, new Point(1, 1), new Point(2, 1)));
+        path.TryAddLine(new Line(1, "1", new Point(1, 1), new Point(2, 1)));
 
         // Act
-        var result = path.TryAddLine(new Line(2, new Point(2, 1), new Point(3, 1)));
+        var result = path.TryAddLine(new Line(2, "2", new Point(2, 1), new Point(3, 1)));
 
         // Assert
         Assert.True(result);
@@ -36,10 +36,10 @@ public class PathTests
     public void PathIsNotEmpty_AddInvalidLineAsLast_LineIsNotAdded() {
         // Arrange
         var path = new Path();
-        path.TryAddLine(new Line(1, new Point(1, 1), new Point(2, 1)));
+        path.TryAddLine(new Line(1, "1", new Point(1, 1), new Point(2, 1)));
 
         // Act
-        var result = path.TryAddLine(new Line(2, new Point(3, 1), new Point(4, 1)));
+        var result = path.TryAddLine(new Line(2, "2", new Point(3, 1), new Point(4, 1)));
 
         // Assert
         Assert.False(result);
@@ -50,10 +50,10 @@ public class PathTests
     public void PathIsNotEmpty_GetPoints_ResultIsCorrect() {
         // Arrange
         var path = new Path();
-        path.TryAddLine(new Line(1, new Point(1, 1), new Point(2, 1)));
-        path.TryAddLine(new Line(1, new Point(2, 1), new Point(3, 1)));
-        path.TryAddLine(new Line(1, new Point(3, 1), new Point(4, 1)));
-        path.TryAddLine(new Line(1, new Point(4, 1), new Point(5, 1)));
+        path.TryAddLine(new Line(1, "1", new Point(1, 1), new Point(2, 1)));
+        path.TryAddLine(new Line(1, "1", new Point(2, 1), new Point(3, 1)));
+        path.TryAddLine(new Line(1, "1", new Point(3, 1), new Point(4, 1)));
+        path.TryAddLine(new Line(1, "1", new Point(4, 1), new Point(5, 1)));
 
         // Act
         var points = path.GetPoints();
