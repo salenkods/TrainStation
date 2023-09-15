@@ -10,7 +10,10 @@
         <Grid x:Name="rootGrid"
               Margin="10">
             <Canvas x:Name="canvasStation" />
-            <Canvas x:Name="canvasPark" /> 
+            <Canvas x:Name="canvasPark" />
+            <Canvas x:Name="canvasStartLine" />
+            <Canvas x:Name="canvasEndLine" />
+            <Canvas x:Name="canvasMinPath" />
         </Grid>
     </Grid>
 </UserControl>

@@ -45,6 +45,27 @@ public class TrainStationTests
         }
     }
 
+    public static IEnumerable<object[]> MinPathNullData() {
+        yield return new object[] { 0, 999 };
+        yield return new object[] { 999, 0 };
+    }
+
+    [Theory]
+    [MemberData(nameof(MinPathNullData))]
+    public void TrainStationIsCreated_FindMinPathWhenOneLineIsNull_MinPathIsNotFound(int startLineIndex, int endLineIndex) {
+        // Arrange
+        var lines = GenerateLines();
+        var trainStation = new TrainStation(lines, new List<Park>());
+        var startLine = lines.FirstOrDefault(x => x.Number == startLineIndex);
+        var endLine = lines.FirstOrDefault(x => x.Number == endLineIndex);
+
+        // Act
+        var minPathLines = trainStation.FindMinPath(startLine, endLine);
+
+        // Assert
+        Assert.Null(minPathLines);
+    }
+
     // Check different assignments for points A and B
     public static IEnumerable<object[]> CommonPointData() {
         yield return new object[] {

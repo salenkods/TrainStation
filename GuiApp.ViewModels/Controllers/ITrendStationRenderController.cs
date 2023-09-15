@@ -4,11 +4,23 @@ namespace GuiApp.ViewModels.Controllers;
 
 public interface ITrendStationRenderController
 {
+    event EventHandler<TrainStation> DrawStationRequested;
+
+    event EventHandler<Park> HighlightParkRequested;
+
+    event EventHandler<Line> HighlightStartLineRequested;
+
+    event EventHandler<Line> HighlightEndLineRequested;
+
+    event EventHandler<List<Line>> DrawMinPathRequested;
+
     void DrawStation(TrainStation trainStation);
 
     void HighlightPark(Park park);
 
-    event EventHandler<TrainStation> DrawStationRequested;
+    void HighlightStartLine(Line line);
 
-    event EventHandler<Park> HighlightParkRequested;
+    void HighlightEndLine(Line line);
+
+    void DrawMinPath(List<Line> lines);
 }

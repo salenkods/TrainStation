@@ -18,6 +18,10 @@ public class TrainStation
     public (double minX, double minY, double maxX, double maxY) GetBoundary() => BoundaryHelper.GetBoundary(Lines);
 
     public List<Line>? FindMinPath(Line startLine, Line endLine) {
+        if (startLine is null || endLine is null) {
+            return null;
+        }
+
         // Take point A for both lines
         var startPoint = startLine.PointA;
         var endPoint = endLine.PointA;

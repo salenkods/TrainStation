@@ -5,44 +5,141 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:GuiApp.Controls"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Схема станции"
         Height="720"
-        Width="1280"
+        Width="1600"
         Loaded="OnLoaded">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="LineTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        FontSize="16">
+                        <Run Text="{Binding Number}" />
+                        <Run Text="/" />
+                        <Run Text="{Binding Name}" />
+                    </TextBlock>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" MinWidth="150" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <ListView
+        <Border
             Grid.Column="0"
-            VerticalAlignment="Top"
-            ItemsSource="{Binding ParkItems}"
-            SelectionMode="Single"
-            SelectedItem="{Binding SelectedPark}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock
-                            Text="{Binding Name}"
-                            FontSize="20" />
-                        <ItemsControl ItemsSource="{Binding Vertices}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}" />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <controls:TrainStationRenderer
+            Margin="20,0,0,20"
+            Padding="0,0,10,0"
+            BorderBrush="Black"
+            BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid
+                    Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Text="Начальный участок"
+                        FontSize="16"
+                        TextTrimming="CharacterEllipsis" />
+                    <ListView
+                        Grid.Row="1"
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding LineItems}"
+                        ItemTemplate="{StaticResource LineTemplate}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedStartLine}" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Text="Конечный участок"
+                        FontSize="16"
+                        TextTrimming="CharacterEllipsis" />
+                    <ListView
+                        Grid.Row="3"
+                        VerticalAlignment="Top"
+                        ItemsSource="{Binding LineItems}"
+                        ItemTemplate="{StaticResource LineTemplate}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedEndLine}" />
+                </Grid>
+                <StackPanel
+                    Orientation="Vertical"
+                    Grid.Column="1"
+                    Margin="10,0,0,0">
+                    <TextBlock
+                        FontSize="16">
+                        <Run Text="От:" />
+                        <Run Text="{Binding SelectedStartLine.Name}" />
+                    </TextBlock>
+                    <TextBlock
+                        FontSize="16">
+                        <Run Text="До:" />
+                        <Run Text="{Binding SelectedEndLine.Name}" />
+                    </TextBlock>
+                    <Button
+                        Content="Построить путь"
+                        Margin="0,10"
+                        FontSize="16"
+                        Command="{Binding DrawMinPathCommand}" />
+                    <ItemsControl
+                        ItemsSource="{Binding MinPathLineItems}"
+                        ItemTemplate="{StaticResource LineTemplate}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid
             Grid.Column="1"
+            Margin="20,0,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Text="Заливка парка"
+                FontSize="16" />
+            <ListView
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                ItemsSource="{Binding ParkItems}"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedPark}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock
+                                Text="{Binding Name}"
+                                FontSize="16" />
+                            <ItemsControl ItemsSource="{Binding Vertices}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <controls:TrainStationRenderer
+            Grid.Column="2"
+            Margin="20,20,20,0"
             Height="400"
             Width="1000"
-            VerticalAlignment="Top"
-            Margin="10">
-        </controls:TrainStationRenderer>
+            VerticalAlignment="Top" />
     </Grid>
 </Window>

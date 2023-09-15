@@ -47,11 +47,11 @@ public class TrainStationDataProvider : ITrainStationDataProvider
             new (new (2, 2), new (3, 1)),
             new (new (15, 1), new (16, 2)),
             new (new (3, 1), new (15, 1)),
-            new (new (6, 4), new (16, 4)),
+            new (new (6, 4), new (16, 4))
         };
 
         var lines = points
-            .Select((p, i) => new Line(i, $"{i}", points[i].PointA, points[i].PointB))
+            .Select((p, i) => new Line(i, $"Line_{i}", points[i].PointA, points[i].PointB))
             .ToList();
 
         var path1 = new Path();

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiApp.ViewModels", "GuiApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{461680E2-B5E4-4442-8AB2-47AEE8A8B3CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework", "Framework\Framework.csproj", "{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvvm", "Mvvm\Mvvm.csproj", "{98A38563-D291-4646-BF49-7ACD79FAC1D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BC474FB-FD66-4C7F-80CF-C3D9502DE92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98A38563-D291-4646-BF49-7ACD79FAC1D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98A38563-D291-4646-BF49-7ACD79FAC1D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98A38563-D291-4646-BF49-7ACD79FAC1D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98A38563-D291-4646-BF49-7ACD79FAC1D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
