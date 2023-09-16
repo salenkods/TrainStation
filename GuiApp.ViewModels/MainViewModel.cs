@@ -61,9 +61,13 @@ public class MainViewModel : BaseViewModel
     private ObservableCollection<LineViewModel>? minPathLineItems;
     public ObservableCollection<LineViewModel>? MinPathLineItems {
         get => minPathLineItems;
-        set {
-            SetProperty(ref minPathLineItems, value);
-        }
+        set => SetProperty(ref minPathLineItems, value);
+    }
+
+    private bool isMinPathNotFound;
+    public bool IsMinPathNotFound {
+        get => isMinPathNotFound;
+        set => SetProperty(ref isMinPathNotFound, value);
     }
 
     public void Activate() {
@@ -81,9 +85,11 @@ public class MainViewModel : BaseViewModel
         var lines = trainStation.FindMinPath(SelectedStartLine?.Line, SelectedEndLine?.Line);
 
         if (lines is null) {
+            IsMinPathNotFound = true;
             return;
         }
 
+        IsMinPathNotFound = false;
         MinPathLineItems = new ObservableCollection<LineViewModel>(lines.Select(x => new LineViewModel(x)));
 
         trendStationRenderController.DrawMinPath(lines);

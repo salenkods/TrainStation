@@ -12,6 +12,7 @@
 
     <Window.Resources>
         <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
             <DataTemplate x:Key="LineTemplate">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock
@@ -97,6 +98,12 @@
                     <ItemsControl
                         ItemsSource="{Binding MinPathLineItems}"
                         ItemTemplate="{StaticResource LineTemplate}" />
+                    <TextBlock
+                        Text="Путь не существует"
+                        Foreground="Red"
+                        FontSize="16"
+                        TextWrapping="Wrap"
+                        Visibility="{Binding IsMinPathNotFound, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </StackPanel>
             </Grid>
         </Border>

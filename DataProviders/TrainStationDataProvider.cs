@@ -54,6 +54,8 @@ public class TrainStationDataProvider : ITrainStationDataProvider
             .Select((p, i) => new Line(i, $"Line_{i}", points[i].PointA, points[i].PointB))
             .ToList();
 
+        lines.Add(new Line(99, "Line_Out", new(17, 5), new(19, 7)));
+
         var path1 = new Path();
         path1.TryAddLine(lines[0]);
 
